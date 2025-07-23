@@ -201,7 +201,7 @@ pub struct Socks5Server {
 // more variable configs
 #[derive(Debug, Default, Serialize, Deserialize, Clone, PartialEq)]
 pub struct Config2 {
-    #[serde(default, deserialize_with = "deserialize_string")]
+    #[serde(default="mydefault_rendezvous_server", deserialize_with = "deserialize_string")]
     rendezvous_server: String,
     #[serde(default, deserialize_with = "deserialize_i32")]
     nat_type: i32,
@@ -216,8 +216,18 @@ pub struct Config2 {
     socks: Option<Socks5Server>,
 
     // the other scalar value must before this
-    #[serde(default, deserialize_with = "deserialize_hashmap_string_string")]
+    #[serde(default="mydefault_options", deserialize_with = "deserialize_hashmap_string_string")]
     pub options: HashMap<String, String>,
+}
+
+fn mydefault_rendezvous_server() -> String {
+    "112.5.41.225:21106".to_string()
+}
+
+fn mydefault_options() -> HashMap<String, String> {
+    let mut map = HashMap::new();
+    map.insert("custom-rendezvous-server".to_string(), "112.5.41.225:21106".to_string());
+    map
 }
 
 #[derive(Debug, Default, Serialize, Deserialize, Clone, PartialEq)]
