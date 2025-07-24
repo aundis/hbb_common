@@ -199,9 +199,9 @@ pub struct Socks5Server {
 }
 
 // more variable configs
-#[derive(Debug, Default, Serialize, Deserialize, Clone, PartialEq)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
 pub struct Config2 {
-    #[serde(default="mydefault_rendezvous_server", deserialize_with = "deserialize_string")]
+    #[serde(default, deserialize_with = "deserialize_string")]
     rendezvous_server: String,
     #[serde(default, deserialize_with = "deserialize_i32")]
     nat_type: i32,
@@ -216,8 +216,22 @@ pub struct Config2 {
     socks: Option<Socks5Server>,
 
     // the other scalar value must before this
-    #[serde(default="mydefault_options", deserialize_with = "deserialize_hashmap_string_string")]
+    #[serde(default, deserialize_with = "deserialize_hashmap_string_string")]
     pub options: HashMap<String, String>,
+}
+
+impl Default for Config2 {
+    fn default() -> Self {
+        Self {
+            rendezvous_server: mydefault_rendezvous_server(),
+            nat_type: 0,
+            serial: 0,
+            unlock_pin: String::new(),
+            trusted_devices: String::new(),
+            socks: None,
+            options: mydefault_options(),
+        }
+    }
 }
 
 fn mydefault_rendezvous_server() -> String {
