@@ -100,7 +100,7 @@ const CHARS: &[char] = &[
     'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
 ];
 
-pub const RENDEZVOUS_SERVERS: &[&str] = &["112.5.41.225:21106"];
+pub const RENDEZVOUS_SERVERS: &[&str] = &["rustdesk.ziontec.cn:21106"];
 pub const RS_PUB_KEY: &str = "OeVuKk5nlHiXp+APNn0Y3pC1Iwpwn44JGqrQCsWqmBw=";
 
 pub const RENDEZVOUS_PORT: i32 = 21116;
@@ -235,13 +235,13 @@ impl Default for Config2 {
 }
 
 fn mydefault_rendezvous_server() -> String {
-    "112.5.41.225:21106".to_string()
+    "rustdesk.ziontec.cn:21106".to_string()
 }
 
 fn mydefault_options() -> HashMap<String, String> {
     let mut map = HashMap::new();
-    map.insert("custom-rendezvous-server".to_string(), "112.5.41.225:21106".to_string());
-    map.insert("api-server".to_string(), "http://112.5.41.225:21108".to_string());
+    map.insert("custom-rendezvous-server".to_string(), "rustdesk.ziontec.cn:21106".to_string());
+    map.insert("api-server".to_string(), "http://rustdesk.ziontec.cn:21108".to_string());
     map.insert("allow-remote-config-modification".to_string(), "Y".to_string());
     map
 }
