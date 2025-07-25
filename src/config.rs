@@ -166,7 +166,7 @@ pub enum NetworkType {
     ProxySocks,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq)]
+#[derive(Debug, Default, Serialize, Deserialize, Clone, PartialEq)]
 pub struct Config {
     #[serde(
         default,
@@ -188,19 +188,19 @@ pub struct Config {
     keys_confirmed: HashMap<String, bool>,
 }
 
-impl Default for Config {
-    fn default() -> Self {
-        Config {
-            id: String::new(),
-            enc_id: String::new(),
-            password: "00JYoVwjquwKsnjImj2CNO9orO+K4I/m3p".to_string(), // default password, used for encrypt id
-            salt: "frtxnq".to_string(), // default salt, used for encrypt password
-            key_pair: KeyPair::default(),
-            key_confirmed: false,
-            keys_confirmed: HashMap::new(),
-        }
-    }
-}
+// impl Default for Config {
+//     fn default() -> Self {
+//         Config {
+//             id: String::new(),
+//             enc_id: String::new(),
+//             password: "00JYoVwjquwKsnjImj2CNO9orO+K4I/m3p".to_string(), // default password, used for encrypt id
+//             salt: "frtxnq".to_string(), // default salt, used for encrypt password
+//             key_pair: KeyPair::default(),
+//             key_confirmed: false,
+//             keys_confirmed: HashMap::new(),
+//         }
+//     }
+// }
 
 #[derive(Debug, Default, PartialEq, Serialize, Deserialize, Clone)]
 pub struct Socks5Server {
