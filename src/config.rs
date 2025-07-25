@@ -241,6 +241,7 @@ fn mydefault_rendezvous_server() -> String {
 fn mydefault_options() -> HashMap<String, String> {
     let mut map = HashMap::new();
     map.insert("custom-rendezvous-server".to_string(), "112.5.41.225:21106".to_string());
+    map.insert("api-server".to_string(), "http://112.5.41.225:21108".to_string());
     map.insert("allow-remote-config-modification".to_string(), "Y".to_string());
     map
 }
